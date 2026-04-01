@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Elite Mods | Đẳng cấp mod menu</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050b14;
+            color: #eef5ff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a192f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e88e5;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00a3ff;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header / Nav */
+        header {
+            background: rgba(5, 11, 20, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(30, 136, 229, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 18px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #1e88e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.9rem;
+            color: #1e88e5;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: #ccdeee;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #1e88e5;
+            text-shadow: 0 0 6px rgba(30,136,229,0.4);
+        }
+        .download-btn-nav {
+            background: linear-gradient(95deg, #0a2f4a, #0a192f);
+            padding: 8px 22px;
+            border-radius: 40px;
+            border: 1px solid #1e88e5;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+        .download-btn-nav:hover {
+            background: #1e88e5;
+            color: #050b14 !important;
+            border-color: #1e88e5;
+            box-shadow: 0 0 12px rgba(30,136,229,0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(30, 136, 229, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #7bc5ff;
+            border: 1px solid rgba(30,136,229,0.4);
+            margin-bottom: 25px;
+        }
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .gradient-text {
+            background: linear-gradient(120deg, #fff, #3ea5ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            color: #b6d0e8;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(105deg, #0a2f4a, #0b2b3f);
+            border: 1.5px solid #1e88e5;
+            padding: 14px 38px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-primary i {
+            font-size: 1.2rem;
+        }
+        .btn-primary:hover {
+            background: #1e88e5;
+            border-color: #ffffff80;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -8px #1e88e5;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2c5a7a;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            color: #bbdef5;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            border-color: #1e88e5;
+            color: white;
+            background: rgba(30,136,229,0.1);
+        }
+
+        /* Section chung */
+        section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        .section-title span {
+            border-bottom: 3px solid #1e88e5;
+            padding-bottom: 6px;
+        }
+
+        /* Cards tính năng */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: rgba(10, 25, 47, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 28px;
+            padding: 30px 24px;
+            border: 1px solid #1a344d;
+            transition: all 0.25s;
+        }
+        .feature-card:hover {
+            border-color: #1e88e5;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -15px rgba(0,0,0,0.5);
+            background: #0a1a2c;
+        }
+        .feature-icon {
+            font-size: 2.8rem;
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            color: #b8cef0;
+        }
+
+        /* Download Section nổi bật */
+        .download-section {
+            background: radial-gradient(circle at 20% 30%, #071422, #03070f);
+            border-radius: 48px;
+            margin: 30px 0;
+            padding: 55px 40px;
+            text-align: center;
+            border: 1px solid #1e3a5f;
+        }
+        .download-section h2 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+        .download-box {
+            background: #0a192fcc;
+            border-radius: 40px;
+            padding: 20px;
+            margin: 30px auto 0;
+            max-width: 550px;
+            display: inline-block;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid #2b5a7c;
+        }
+        .download-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #05101f;
+            padding: 12px 25px;
+            border-radius: 60px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .download-link span {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #9ac9ff;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: #1e88e5;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .copy-btn:hover {
+            background: #0f5b9e;
+            transform: scale(0.97);
+        }
+        .direct-dl {
+            margin-top: 25px;
+        }
+        .btn-download-large {
+            background: linear-gradient(120deg, #0a2f4a, #0e3a5a);
+            padding: 18px 48px;
+            font-size: 1.4rem;
+            border-radius: 60px;
+            border: 1px solid #1e88e5;
+            font-weight: 800;
+            gap: 12px;
+        }
+
+        /* Hướng dẫn */
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .step-item {
+            background: #0a192f;
+            border-radius: 28px;
+            padding: 28px;
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            border-bottom: 3px solid #1e88e5;
+        }
+        .step-number {
+            background: #1e88e5;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #03070e;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #132e44;
+            margin-top: 30px;
+            color: #7e9fc7;
+        }
+
+        /* Responsive */
+        @media (max-width: 850px) {
+            .container {
+                padding: 0 20px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 22px;
+            }
+            .section-title {
+                font-size: 1.9rem;
+            }
+            .download-section {
+                padding: 35px 20px;
+            }
+        }
+        @media (max-width: 550px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .download-link {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <h1>ELITE MODS</h1>
+                <span>▸ đặc quyền · vô song</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#features">Tính năng</a></li>
+                <li><a href="#download">Tải xuống</a></li>
+                <li><a href="#guide">Hướng dẫn</a></li>
+            </ul>
+            <a href="#download" class="download-btn-nav"><i class="fas fa-download"></i> Elite Mod</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <!-- Hero -->
+    <section id="home">
+        <div class="container hero">
+            <div class="hero-badge">
+                <i class="fas fa-crown"></i> Độc quyền · Bản quyền Elite
+            </div>
+            <h1>Chạm đến <span class="gradient-text">đẳng cấp</span><br> cùng <span class="gradient-text">Elite Mods</span></h1>
+            <p>Mod menu tối ưu nhất dành cho game thủ. Tốc độ, ổn định và bảo mật vượt trội. Trải nghiệm tính năng đặc quyền chưa từng có.</p>
+            <div class="btn-group">
+                <a href="#download" class="btn-primary"><i class="fas fa-bolt"></i> Tải ngay bản mới nhất</a>
+                <a href="#features" class="btn-outline"><i class="fas fa-info-circle"></i> Khám phá thêm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+        <div class="container">
+            <div class="section-title">
+                <span>⚡ Tính năng đặc quyền ⚡</span>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Bypass Anti-Cheat</h3>
+                    <p>Công nghệ vượt tường lửa, an toàn tài khoản, không lo bị phát hiện.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3>Aimbot + ESP</h3>
+                    <p>Hỗ trợ ngắm bắn siêu đỉnh, nhìn xuyên tường, hiển thị khoảng cách chính xác.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3>Menu tùy chỉnh</h3>
+                    <p>Giao diện trực quan, bật/tắt từng tính năng, điều chỉnh tốc độ, độ mạnh nhẹ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-database"></i></div>
+                    <h3>Update liên tục</h3>
+                    <p>Bám sát phiên bản game mới, hỗ trợ nhanh chóng khi game cập nhật.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-secret"></i></div>
+                    <h3>Chế độ ẩn danh</h3>
+                    <p>Không để lại dấu vết, tối ưu quyền riêng tư tuyệt đối.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                    <h3>Hỗ trợ 24/7</h3>
+                    <p>Cộng đồng Discord riêng, hỗ trợ kỹ thuật và cập nhật sớm nhất.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section - trọng tâm -->
+    <div class="container" id="download">
+        <div class="download-section">
+            <h2><i class="fas fa-crown"></i> Tải xuống Elite Mods</h2>
+            <p>Phiên bản mới nhất · Tối ưu cho Android / Windows · Cập nhật 01/04/2026</p>
+            <div class="download-box">
+                <div class="download-link">
+                    <span><i class="fas fa-link"></i> https://www.mediafire.com/file/elite-mods-v2.5.7z</span>
+                    <button class="copy-btn" id="copyLinkBtn"><i class="far fa-copy"></i> Sao chép</button>
+                </div>
+                <div class="direct-dl">
+                    <a href="#" class="btn-primary btn-download-large" id="realDownloadBtn"><i class="fas fa-download"></i> Tải xuống ngay (MediaFire)</a>
+                    <p style="font-size: 0.8rem; margin-top: 15px;">🔒 Mã giải nén: <strong style="color:#1e88e5;">ELITE2026</strong> (nếu cần)</p>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <small><i class="fas fa-shield-virus"></i> Quét virus: 100% an toàn, không mã độc, dành riêng cộng đồng Elite.</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hướng dẫn cài đặt -->
+    <section id="guide">
+        <div class="container">
+            <div class="section-title">
+                <span>📘 Hướng dẫn cài đặt</span>
+            </div>
+            <div class="steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3>Tải file</h3>
+                    <p>Nhấn nút tải xuống bên trên, lưu file .7z về máy.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3>Giải nén</h3>
+                    <p>Sử dụng ZArchiver hoặc WinRAR, nhập mã <strong>ELITE2026</strong>.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3>Cài đặt & cấp quyền</h3>
+                    <p>Cài file APK hoặc chạy file .exe, cấp quyền truy cập.</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3>Bật menu</h3>
+                    <p>Vào game, kích hoạt lớp phủ và tận hưởng đặc quyền Elite.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 45px;">
+                <a href="#" class="btn-outline" style="border-color:#1e88e5;"><i class="fab fa-youtube"></i> Video hướng dẫn chi tiết</a>
+                <a href="#" class="btn-outline" style="margin-left: 15px;"><i class="fab fa-discord"></i> Discord hỗ trợ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thông tin thêm - Chứng nhận -->
+    <div class="container" style="margin-bottom: 40px;">
+        <div style="background: #0a192f55; border-radius: 28px; padding: 30px; text-align: center; border: 1px solid #1e3f60;">
+            <i class="fas fa-gem" style="font-size: 2.2rem; color: #1e88e5;"></i>
+            <h3 style="margin: 12px 0;">Elite Mods — Đặc quyền dành cho game thủ thực thụ</h3>
+            <p style="max-width: 700px; margin: 0 auto;">Không chỉ là mod menu, Elite Mods mang đến trải nghiệm vượt trội, giao diện tinh tế và cập nhật nhanh nhất. Hàng ngàn người dùng đã tin tưởng.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 Elite Mods | Thiết kế đặc quyền | Mọi thông tin chỉ mang tính chất tham khảo.</p>
+        <p style="margin-top: 12px;"><i class="fas fa-envelope"></i> contact@elitemods.gg  |  <i class="fab fa-twitter"></i> @elite_mods</p>
+    </div>
+</footer>
+
+<script>
+    // Sao chép link
+    const copyBtn = document.getElementById('copyLinkBtn');
+    const linkSpan = document.querySelector('.download-link span');
+    const originalLinkText = "https://www.mediafire.com/file/elite-mods-v2.5.7z";
+    
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(originalLinkText).then(() => {
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Đã sao chép!';
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="far fa-copy"></i> Sao chép';
+            }, 2000);
+        });
+    });
+
+    // Xử lý nút tải (chuyển hướng tới link thật - thay bằng link MediaFire chuẩn)
+    const downloadBtn = document.getElementById('realDownloadBtn');
+    // Đây là link từ ảnh cũ của bạn (đã được encode) nhưng có thể thay bằng link mới
+    const realMediaFireUrl = "https://www.mediafire.com/file/mdysa49mxnmrg7b/Painel_FFH4X_Atualizado_%25E2%2598%25A0%25EF%25B8%258F.7z/file";
+    
+    downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.open(realMediaFireUrl, '_blank');
+    });
+
+    // smooth scroll cho các anchor
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if(targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if(targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+</body>
+  </html>
