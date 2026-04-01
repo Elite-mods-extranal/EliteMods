@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>GET KEY | GOD TIER KEYMASTER</title>
+<!-- Font Awesome 6 (free) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    min-height: 100vh;
+    background: #050508;
+    font-family: 'Poppins', 'Segoe UI', 'Inter', system-ui, -apple-system;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* === SIÊU VIP BACKGROUND ĐỘNG NHƯNG KHÔNG GÂY LAG === */
+  .cosmic-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(ellipse at 20% 30%, #0a0a1a 0%, #020208 100%);
+  }
+
+  .cosmic-bg::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,105,180,0.05) 50%, transparent 70%);
+    animation: slowDrift 24s infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes slowDrift {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0.4; }
+    100% { transform: translate(5%, 5%) rotate(5deg); opacity: 0.8; }
+  }
+
+  /* === HIỆU ỨNG SAO BAY NHẸ - KHÔNG LAG === */
+  .star-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 3s infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.8; transform: scale(1); }
+  }
+
+  /* === CONTAINER CHÍNH - SIÊU VIP 3D === */
+  .vip-container {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    max-width: 720px;
+    perspective: 1000px;
+  }
+
+  .vip-card {
+    background: linear-gradient(135deg, rgba(20, 15, 45, 0.85), rgba(10, 8, 25, 0.95));
+    backdrop-filter: blur(20px);
+    border-radius: 3rem;
+    padding: 2rem 2rem 2.5rem;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,215,0,0.3), 0 0 50px rgba(255,215,0,0.2);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    animation: cardFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes cardFloat {
+    0%, 100% { transform: translateY(0px) rotateX(0deg); }
+    50% { transform: translateY(-8px) rotateX(2deg); }
+  }
+
+  .vip-card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 2px rgba(255,215,0,0.6), 0 0 70px rgba(255,215,0,0.4);
+    border-color: rgba(255,215,0,0.3);
+  }
+
+  /* === BADGE SIÊU CẤP === */
+  .god-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #ffd966, #ffb347);
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #1a0f0a;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255,200,0,0.6);
+  }
+
+  /* === TIÊU ĐỀ VŨ TRỤ === */
+  .cosmic-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFE6B0, #FFD966, #FFB347, #FF8C42);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(255,200,0,0.5);
+    letter-spacing: 4px;
+    margin-bottom: 0.25rem;
+    animation: titleGlow 3s infinite;
+  }
+
+  @keyframes titleGlow {
+    0%, 100% { filter: drop-shadow(0 0 5px gold); }
+    50% { filter: drop-shadow(0 0 20px #ffaa33); }
+  }
+
+  .subtitle-vip {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #c0c0ff, #a0a0ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+  }
+
+  /* === KEY DISPLAY AREA (đậm chất keymaster) === */
+  .key-display-area {
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    transition: all 0.2s;
+  }
+
+  .key-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #ffdd99;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .key-value-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid rgba(255, 200, 100, 0.5);
+  }
+
+  .key-value {
+    font-family: 'Menlo', 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    word-break: break-all;
+    color: #fff0c0;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-shadow: 0 0 2px rgba(0,0,0,0.5);
+  }
+
+  .copy-btn {
+    background: linear-gradient(135deg, #ffb347, #ff8c00);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1a0f0a;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .copy-btn:hover {
+    transform: scale(0.96);
+    background: linear-gradient(135deg, #ffaa44, #ff7700);
+    box-shadow: 0 0 12px rgba(255,180,0,0.6);
+  }
+
+  /* === INFO GRID ĐẲNG CẤP === */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .info-card {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    transition: all 0.2s;
+  }
+
+  .info-title {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #ffda99;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .info-value {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff2df;
+  }
+
+  .status-badge {
+    display: inline-block;
+    background: #2a6e4b;
+    color: #d4ffcc;
+    padding: 0.2rem 0.7rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    box-shadow: 0 0 4px #88ff88;
+  }
+
+  /* === ACTION BUTTONS === */
+  .action-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0 1rem;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ffb347, #ff7e05);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 3rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #1e1a0c;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(255,100,0,0.3);
+  }
+
+  .btn-secondary {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid #ffb347;
+    padding: 0.8rem 1.5rem;
+    border-radius: 3rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffdd99;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(255,100,0,0.5);
+    background: linear-gradient(135deg, #ffc061, #ff9110);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 180, 70, 0.2);
+    border-color: #ffcc66;
+    transform: translateY(-1px);
+  }
+
+  /* === FOOTER === */
+  .key-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: #aa9f77;
+    border-top: 1px solid rgba(255,215,0,0.2);
+    padding-top: 1.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  /* toast */
+  .toast-notify {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    background: #1f1a2e;
+    backdrop-filter: blur(12px);
+    color: #ffecb3;
+    padding: 0.7rem 1.6rem;
+    border-radius: 60px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 0 1px gold;
+    font-family: monospace;
+  }
+
+  .toast-notify.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* responsive */
+  @media (max-width: 550px) {
+    .vip-card { padding: 1.5rem; }
+    .cosmic-title { font-size: 2.3rem; letter-spacing: 2px; }
+    .info-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+    .key-value { font-size: 0.8rem; }
+    .action-group { flex-direction: column; }
+    .btn-primary, .btn-secondary { width: 100%; }
+  }
+
+  .loading-pulse {
+    opacity: 0.7;
+    transition: 0.1s;
+  }
+
+  .redirect-flash {
+    animation: flashVip 0.8s ease-out;
+  }
+
+  @keyframes flashVip {
+    0% { box-shadow: 0 0 0 0 rgba(255,215,0,0.8); }
+    100% { box-shadow: 0 0 0 30px rgba(255,215,0,0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="cosmic-bg"></div>
+<div class="star-field" id="starField"></div>
+
+<div class="vip-container">
+  <div class="vip-card">
+    <div style="display: flex; justify-content: center;">
+      <div class="god-badge">
+        <i class="fas fa-key"></i> DIVINE KEYMASTER <i class="fas fa-crown"></i>
+      </div>
+    </div>
+    
+    <div class="cosmic-title">GET KEY</div>
+    <div class="subtitle-vip">✦ IMPERIAL KEY VAULT ✦</div>
+    
+    <!-- Key Display Area -->
+    <div class="key-display-area">
+      <div class="key-label">
+        <i class="fas fa-fingerprint"></i>
+        <span>YOUR UNIQUE KEY</span>
+      </div>
+      <div class="key-value-wrapper">
+        <div class="key-value" id="apiKeyValue">••••••-KEY-••••••</div>
+        <button class="copy-btn" id="copyKeyBtn">
+          <i class="far fa-copy"></i> Copy
+        </button>
+      </div>
+    </div>
+
+    <!-- Balanced info grid: status, expiry, usage, type -->
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="info-title"><i class="fas fa-circle-info"></i> STATUS</div>
+        <div class="info-value"><span id="keyStatusBadge" class="status-badge">● Pending</span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-title"><i class="far fa-calendar-alt"></i> EXPIRY</div>
+        <div class="info-value" id="expiryValue">--</div>
+      </div>
+      <div class="info-card">
+        <div class="info-title"><i class="fas fa-chart-line"></i> USAGE LIMIT</div>
+        <div class="info-value" id="usageLimit">--</div>
+      </div>
+      <div class="info-card">
+        <div class="info-title"><i class="fas fa-tag"></i> KEY TYPE</div>
+        <div class="info-value" id="keyType">--</div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-group">
+      <button class="btn-primary" id="getKeyBtn">
+        <i class="fas fa-key"></i> GET KEY
+      </button>
+    </div>
+
+    <div class="key-footer">
+      <span><i class="fas fa-shield-alt"></i> Secure vault</span>
+      <span><i class="fas fa-infinity"></i> God tier crypto</span>
+      <span><i class="fas fa-bolt"></i> Instant</span>
+    </div>
+  </div>
+</div>
+
+<!-- toast message -->
+<div id="toastMsg" class="toast-notify">✨ Ready</div>
+
+<script>
+  (function() {
+    // ========== TẠO SAO ==========
+    function createStars() {
+      const starField = document.getElementById('starField');
+      const starCount = window.innerWidth < 768 ? 80 : 150;
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = Math.random() * 2.5 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        star.style.animationDuration = Math.random() * 3 + 2 + 's';
+        star.style.background = `rgba(255, ${200 + Math.random() * 55}, ${100 + Math.random() * 100}, ${0.5 + Math.random() * 0.5})`;
+        starField.appendChild(star);
+      }
+    }
+    createStars();
+
+    // DOM elements
+    const getKeyBtn = document.getElementById("getKeyBtn");
+    const keyValueSpan = document.getElementById("apiKeyValue");
+    const expirySpan = document.getElementById("expiryValue");
+    const usageSpan = document.getElementById("usageLimit");
+    const keyTypeSpan = document.getElementById("keyType");
+    const statusBadgeSpan = document.getElementById("keyStatusBadge");
+    const copyBtn = document.getElementById("copyKeyBtn");
+    const toast = document.getElementById("toastMsg");
+
+    let isProcessing = false;
+    let currentKey = null;
+    let currentShortlink = null;
+
+    function showToast(message, isError = false) {
+      toast.innerText = message;
+      if(isError) {
+        toast.style.background = "#ab3e2c";
+        toast.style.color = "#fff2e8";
+      } else {
+        toast.style.background = "#1f1a2e";
+        toast.style.color = "#ffecb3";
+      }
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+        toast.style.background = "#1f1a2e";
+        toast.style.color = "#ffecb3";
+      }, 2000);
+    }
+
+    function updateUI(keyData, expiryDate) {
+      if (keyData) {
+        currentKey = keyData;
+        keyValueSpan.innerText = keyData;
+      }
+      if (expiryDate) {
+        expirySpan.innerText = expiryDate;
+      }
+      statusBadgeSpan.innerHTML = `<span class="status-badge">● Active</span>`;
+      usageSpan.innerText = "1/1 use";
+      keyTypeSpan.innerText = "Divine Access";
+    }
+
+    function resetUI() {
+      keyValueSpan.innerText = "••••••-KEY-••••••";
+      expirySpan.innerText = "--";
+      usageSpan.innerText = "--";
+      keyTypeSpan.innerText = "--";
+      statusBadgeSpan.innerHTML = `<span class="status-badge">● Pending</span>`;
+      currentKey = null;
+      currentShortlink = null;
+    }
+
+    async function copyKeyToClipboard() {
+      if (!currentKey) {
+        showToast("⚠️ No key yet! Click GET KEY first", true);
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(currentKey);
+        showToast("🔑 Key copied to divine clipboard!", false);
+      } catch (err) {
+        const textarea = document.createElement("textarea");
+        textarea.value = currentKey;
+        document.body.appendChild(textarea);
+        textarea.select();
+        const success = document.execCommand("copy");
+        document.body.removeChild(textarea);
+        if (success) {
+          showToast("📋 Key copied (fallback)", false);
+        } else {
+          showToast("Cannot copy, manual copy needed", true);
+        }
+      }
+    }
+
+    function formatExpiryDate(timestamp) {
+      const date = new Date(timestamp);
+      return date.toLocaleDateString('vi-VN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    }
+
+    async function handleGetKey() {
+      if (isProcessing) return;
+      isProcessing = true;
+      getKeyBtn.disabled = true;
+      getKeyBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> SUMMONING...';
+      showToast("🔄 Đang triệu hồi key...", false);
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        
+        const res = await fetch("/.netlify/functions/createKeyShortlink", {
+          method: "GET",
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        
+        let data;
+        try {
+          data = await res.json();
+        } catch (e) {
+          throw new Error("Dữ liệu không hợp lệ từ server");
+        }
+
+        if (data && data.success === true && data.shortlink && data.key) {
+          currentKey = data.key;
+          currentShortlink = data.shortlink;
+          
+          // Tính expiry hiển thị (24h từ lúc tạo)
+          const expiryDate = new Date(Date.now() + (24 * 60 * 60 * 1000));
+          const expiryStr = expiryDate.toLocaleDateString('vi-VN', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+          
+          updateUI(data.key, expiryStr);
+          showToast("✨ Key đã sẵn sàng! Chuyển hướng...", false);
+          
+          // Hiệu ứng flash VIP
+          const card = document.querySelector('.vip-card');
+          card.classList.add('redirect-flash');
+          
+          // Tạo hiệu ứng nổ nhẹ
+          for(let i = 0; i < 6; i++) {
+            setTimeout(() => {
+              const flash = document.createElement('div');
+              flash.style.position = 'fixed';
+              flash.style.top = '50%';
+              flash.style.left = '50%';
+              flash.style.width = '30px';
+              flash.style.height = '30px';
+              flash.style.borderRadius = '50%';
+              flash.style.background = 'radial-gradient(circle, gold, transparent)';
+              flash.style.pointerEvents = 'none';
+              flash.style.zIndex = '9999';
+              flash.style.transform = 'translate(-50%, -50%)';
+              flash.style.animation = 'flashVip 0.4s ease-out forwards';
+              document.body.appendChild(flash);
+              setTimeout(() => flash.remove(), 400);
+            }, i * 40);
+          }
+          
+          setTimeout(() => {
+            window.location.href = currentShortlink;
+          }, 500);
+          
+        } else {
+          const errorMsg = data?.error || "Cổng kết nối thất bại, thử lại sau giây lát";
+          showToast(errorMsg, true);
+          getKeyBtn.disabled = false;
+          getKeyBtn.innerHTML = '<i class="fas fa-key"></i> GET KEY';
+          isProcessing = false;
+          resetUI();
+        }
+      } catch (err) {
+        console.error("VIP Error:", err);
+        let friendlyMsg = "Lỗi kết nối, vui lòng thử lại";
+        if (err.name === 'AbortError') friendlyMsg = "Quá thời gian chờ, kiểm tra kết nối";
+        else if (err.message) friendlyMsg = err.message;
+        
+        showToast(friendlyMsg, true);
+        getKeyBtn.disabled = false;
+        getKeyBtn.innerHTML = '<i class="fas fa-key"></i> GET KEY';
+        isProcessing = false;
+        resetUI();
+      }
+    }
+
+    // Event listeners
+    getKeyBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (getKeyBtn.disabled || isProcessing) return;
+      handleGetKey();
+    });
+    
+    copyBtn.addEventListener("click", copyKeyToClipboard);
+    keyValueSpan.addEventListener("click", copyKeyToClipboard);
+    keyValueSpan.style.cursor = "pointer";
+    keyValueSpan.title = "Click to copy key";
+
+    // Hover effect
+    getKeyBtn.addEventListener('mouseenter', () => {
+      if (!getKeyBtn.disabled) {
+        getKeyBtn.style.transform = 'scale(1.02)';
+      }
+    });
+    getKeyBtn.addEventListener('mouseleave', () => {
+      if (!getKeyBtn.disabled) {
+        getKeyBtn.style.transform = 'scale(1)';
+      }
+    });
+  })();
+</script>
+</body>
+  </html>
